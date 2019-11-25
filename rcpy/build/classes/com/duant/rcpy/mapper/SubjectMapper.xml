@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duant.rcpy.mapper.SubjectMapper">
+
+	<insert id="replaceIntoSubject" parameterType="com.duant.rcpy.domain.Subject">
+		REPLACE INTO subject (subjectid,property1,property2,subjectname)
+		VALUES (#{subjectid},#{property1},#{property2},#{subjectname})
+	</insert>
+	
+	<select id="selectSubjectByName" parameterType="java.lang.String" resultType="com.duant.rcpy.domain.Subject">
+		SELECT * FROM subject WHERE subjectname = #{subjectname}
+	</select>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.duant.rcpy.domain.Subject">
+		SELECT * FROM subject WHERE subjectid = #{subjectid}
+	</select>
+	
+	<select id="selectAllSubject" resultType="com.duant.rcpy.domain.Subject">
+		SELECT * FROM subject
+	</select>
+	
+	<select id="selectSubjectByProperty" resultType="com.duant.rcpy.domain.Subject">
+		SELECT * FROM subject WHERE property1 = #{arg0} AND property2 = #{arg1}
+	</select>
+	
+
+</mapper>

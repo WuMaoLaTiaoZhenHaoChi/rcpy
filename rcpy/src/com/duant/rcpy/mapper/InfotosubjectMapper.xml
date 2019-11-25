@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.duant.rcpy.mapper.InfotosubjectMapper">
+	
+	<insert id="insert" parameterType="com.duant.rcpy.domain.Infotosubject">
+	insert into infotosubject (infotosubjectid, fraction, classhour, 
+      classhourweek, mode,infoid,subjectid,semester)
+    values (#{infotosubjectid,jdbcType=INTEGER}, #{fraction,jdbcType=INTEGER},#{classhour,jdbcType=INTEGER},
+    #{classhourweek,jdbcType=INTEGER}, #{mode,jdbcType=VARCHAR}, 
+    #{infoid,jdbcType=INTEGER},#{subjectid,jdbcType=INTEGER},#{semester,jdbcType=INTEGER})
+	</insert>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM infotosubject WHERE infoid=#{arg0} AND subjectid = #{arg1}
+	</delete>
+	
+	<update id="updateByPrimaryKey" parameterType="com.duant.rcpy.domain.Infotosubject">
+		update infotosubject
+    	set fraction = #{fraction,jdbcType=INTEGER},classhour = #{classhour,jdbcType=INTEGER},
+    		classhourweek = #{classhourweek,jdbcType=INTEGER},mode = #{mode,jdbcType=VARCHAR},
+    		infotosubjectid = #{infotosubjectid,jdbcType=INTEGER},semester = #{semester,jdbcType=INTEGER}
+   		where subjectid = #{subjectid,jdbcType=INTEGER} AND infoid = #{infoid,jdbcType=INTEGER}
+	</update>
+	
+	<select id="selectAllByPrimaryKey" parameterType="java.lang.Integer" resultType="com.duant.rcpy.domain.Infotosubject">
+		select * from infotosubject where infoid = #{infoid} 
+	</select>
+	
+	<select id="selectSubjectIdByPrimaryKey" resultType="java.lang.Integer">
+		select infotosubject.subjectid from infotosubject where infoid = #{arg0} AND semester = #{arg1}
+	</select>
+	
+	<select id="selectSubjectIdByIAndS" resultType="com.duant.rcpy.domain.Infotosubject">
+		select * from infotosubject where infoid = #{arg0} AND subjectid = #{arg1}
+	</select>
+	
+	
+</mapper>

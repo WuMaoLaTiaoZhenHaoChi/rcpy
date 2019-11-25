@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+	
+	<!--        打印sql日志 -->
+<!--  	<settings>
+        <setting name="cacheEnabled" value="true" />
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings> --> 
+	
+	<!-- 去别名 -->
+	<typeAliases>
+		<package name="com.duant.rcpy.domain"/>
+	</typeAliases>
+	
+	<!-- 连接数据库的配置，交给spring -->
+	
+	<!-- 加载mapper映射文件 -->
+	<mappers>
+		<package name="com.duant.rcpy.mapper"/>
+	</mappers>
+	
+
+</configuration>

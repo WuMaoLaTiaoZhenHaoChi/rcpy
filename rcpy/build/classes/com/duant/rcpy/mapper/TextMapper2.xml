@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.duant.rcpy.mapper.TextMapper">
+	
+<!-- 	<insert id="insert" parameterType="com.duant.rcpy.domain.Text">
+		INSERT INTO text (textid, title, target, targettext, require, requiretext, feature, 
+		teaturetext, xuezhi, xuezhitext, subject, subjecttext, infoid,)
+		VALUES ( #{textid,jdbcType=INTEGER, #{title,jdbcType=VARCHAR},
+			#{target,jdbcType=VARCHAR},#{targettext,jdbcType=TEXT},#{require,jdbcType=VARCHAR},
+			#{requiretext,jdbcType=TEXT},#{feature,jdbcType=VARCHAR},#{teaturetext,jdbcType=TEXT},
+			#{xuezhi,jdbcType=VARCHAR},#{xuezhitext,jdbcType=TEXT},#{subject,jdbcType=VARCHAR},
+			#{subjecttext,jdbcType=TEXT},#{infoid,jdbcType=INTEGER})
+	</insert> -->
+	
+	<insert id="insert" parameterType="com.duant.rcpy.domain.Text">
+		insert into text (textid,title,target,targettext,require,requiretext,feature, 
+		teaturetext,xuezhi,xuezhitext,subject,subjecttext,infoid)
+		values ( #{textid,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},
+			#{target,jdbcType=VARCHAR},#{targettext,jdbcType=VARCHAR},#{require,jdbcType=VARCHAR},
+			#{requiretext,jdbcType=VARCHAR},#{feature,jdbcType=VARCHAR},#{teaturetext,jdbcType=VARCHAR},
+			#{xuezhi,jdbcType=VARCHAR},#{xuezhitext,jdbcType=VARCHAR},#{subject,jdbcType=VARCHAR},
+			#{subjecttext,jdbcType=VARCHAR},#{infoid,jdbcType=INTEGER})
+	</insert>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM text WHERE infoid = #{infoid}
+	</delete>
+	
+	<update id="updateByPrimaryKey" parameterType="com.duant.rcpy.domain.Text">
+		UPDATE text 
+		SET title=#{title,jdbcType=VARCHAR},target=#{target,jdbcType=VARCHAR},
+		targettext=#{targettext,jdbcType=VARCHAR},require=#{require,jdbcType=VARCHAR},requiretext=#{requiretext,jdbcType=VARCHAR},
+		feature=#{feature,jdbcType=VARCHAR},teaturetext=#{teaturetext,jdbcType=VARCHAR},xuezhi=#{xuezhi,jdbcType=VARCHAR},
+		xuezhitext = #{xuezhitext,jdbcType=VARCHAR},subject=#{subject,jdbcType=VARCHAR},subjecttext=#{subjecttext,jdbcType=VARCHAR}
+		WHERE infoid = #{infoid,jdbcType=Integer}
+	</update>
+	
+<!-- 	<update id="updateByPrimaryKey" parameterType="com.duant.rcpy.domain.Text">
+		UPDATE text 
+		SET title = #{title,jdbcType=VARCHAR},target = #{target,jdbcType=VARCHAR},
+		targettext = #{targettext,jdbcType=TEXT},require = #{require,jdbcType=VARCHAR},requiretext = #{requiretext,jdbcType=TEXT},
+		feature = #{feature,jdbcType=VARCHAR},teaturetext = #{teaturetext,jdbcType=TEXT},xuezhi = #{xuezhi,jdbcType=VARCHAR},
+		xuezhitext = #{xuezhitext,jdbcType=TEXT},subject = #{subject,jdbcType=VARCHAR},subjecttext = #{subjecttext,jdbcType=TEXT}
+		WHERE infoid = #{infoid,jdbcType=Integer}
+	</update> -->
+	
+	<select id="selectTextByPrimaryKey" parameterType="java.lang.Integer" resultType="com.duant.rcpy.domain.Text">
+		SELECT * FROM text WHERE infoid = #{infoid}
+	</select>
+
+</mapper>

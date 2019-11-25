@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.duant.rcpy.mapper.InfoMapper">
+	<insert id="replaceIntoInfo" parameterType="com.duant.rcpy.domain.Info">
+		REPLACE INTO info(infoid,grade,college,specialty)
+		VALUES(#{infoid},#{grade},#{college},#{specialty})
+	</insert>
+
+	<update id="updateChangeByInfoid" parameterType="java.lang.Integer">
+		UPDATE rcpy.info SET info.submit = 1,info.change = 1 WHERE infoid = #{infoid}
+	</update>
+	
+	<update id="updateSubmitByInfoid" parameterType="java.lang.Integer">
+		UPDATE rcpy.info SET info.submit = 0,info.change = 0 WHERE infoid = #{infoid}
+	</update>
+
+	<update id="updateInfoByInfoid" parameterType="java.lang.Integer">
+		UPDATE info SET info.submit = 1,info.userid = #{arg1} WHERE infoid = #{arg0}
+	</update>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.duant.rcpy.domain.Info">
+		SELECT * FROM info WHERE infoid=#{infoid}
+	</select>
+	
+	<select id="selectAllInfo" resultType="com.duant.rcpy.domain.Info">
+		SELECT * FROM info
+	</select>
+	
+	<select id="selectInfoByPage" resultType="com.duant.rcpy.domain.Info">
+		SELECT * FROM info LIMIT #{arg0},#{arg1}
+	</select>
+	
+	<select id="selectAllGrade" resultType="java.lang.Integer">
+		SELECT DISTINCT grade FROM info
+	</select>
+	<select id="selectAllCollegeByGrade" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT DISTINCT college FROM info WHERE grade = #{grade}
+	</select>
+	<select id="selectAllSpecialtyByCollege"  resultType="java.lang.String">
+		SELECT DISTINCT specialty FROM info WHERE grade = #{arg0} AND college = #{arg1}
+	</select>
+	
+	<select id="selectInfoByGCS"  resultType="com.duant.rcpy.domain.Info">
+		SELECT * FROM info WHERE grade = #{arg0} AND college = #{arg1} AND specialty = #{arg2}
+	</select>
+	
+	
+
+</mapper>

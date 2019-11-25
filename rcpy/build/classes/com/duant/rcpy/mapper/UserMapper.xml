@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.duant.rcpy.mapper.UserMapper">
+	
+	<select id="selectByPrimaryKey" parameterType="Integer" resultType="com.duant.rcpy.domain.User">
+		SELECT * FROM user WHERE userid=#{userid}
+	</select>
+	
+	<insert id="replaceUser" parameterType="com.duant.rcpy.domain.User">
+		REPLACE INTO user(userid,password,username,isadmin)
+		VALUES (#{userid},#{password},#{username},#{isadmin})
+	</insert>
+
+</mapper>
